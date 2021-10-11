@@ -201,22 +201,42 @@ class Student {
 
 }
 
+/**
+* FloorPlanSystem
+* This class is for the floorPlanSystem, representing the Tables and students graphically
+*/
 class FloorPlanSystem {
-
+    
+    /**
+    * FloorPlanSystem constructor
+    * Constructor method for the FloorPlanSystem class.
+    */
     public FloorPlanSystem() {
-
     }
-
+    
+    //New ArrayList for the tables
     ArrayList<Table> tables = new ArrayList<Table>();
-
+       
+    /**
+    * String getTables - Getter method
+    * @return tables (ArrayList<Table>) - ArrayList for tables
+    */
     public ArrayList<Table> getTables() {
         return tables;
     }
-
+    
+    /**
+    * String getTables - Getter method
+    * @return tables (ArrayList<Table>) - ArrayList for tables
+    */
     public void addTable(Table table) {
         tables.add(table);
     }
-
+    
+    /**
+    * void printFloorPlan
+    * Graphically prints out the Floor Plan referencing ArrayList tables and the list of students
+    */
     public void printFloorPlan() {
 
         System.out.println("The Floor Plan!\n");
@@ -224,7 +244,7 @@ class FloorPlanSystem {
         for (int i = 0; i < tables.size(); i++) {
 
             System.out.println(tables.get(i).getTableName() + "\n");
-
+            
             for (int j = 0; j < tables.get(i).getStudentList().length; j++) {
                 System.out.println(tables.get(i).getStudentList()[j]);
             }
