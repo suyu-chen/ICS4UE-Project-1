@@ -1,13 +1,12 @@
+/* SeatingAssignmentSystem.java  
+ * @author Dhruv, Alex, Suyu
+ * @version October 11, 2021
+ * Assign students to seats.
+ */
+
 import java.util.Collections;
 import java.util.ArrayList;
 
-/**
- * [SeatingAssignmentSystem.java] 
- * This assigns students to seats. You're
- * welcome.
- * 
- * @author Dhruv, Suyu, Alex
- */
 class SeatingAssignmentSystem {
 
     final String[] groupNames = { "intro", "contest", "web" };
