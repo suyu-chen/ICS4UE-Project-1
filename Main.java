@@ -7,16 +7,24 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+* Main class
+* Contains tester methods
+*/
 class Main {
 
     static int studentNum = 500;
     static int numberOfStudentsToTest = 500;
-
+    
+    /**
+    * main
+    * Tester method to generate random students, assign them to seats, and display them graphically using the floorPlanSystem
+    */
     public static void main(String[] args) {
-
+        
         ArrayList<Student> students = new ArrayList<>();
 
-        // testing students
+        //Generate random students to add to the students ArrayList
         for (int i = 0; i < numberOfStudentsToTest; i++) {
             students.add(generateRandomStudent());
         }
@@ -27,7 +35,6 @@ class Main {
         students.add(new Student("friend5", 995, 9, "web", new int[] { 998, 998, 998 }));
         students.add(new Student("friend6", 994, 9, "web", new int[] { 999, 998, 996 }));
 
-        // stuff
         FloorPlanSystem floorPlanSystem = new FloorPlanSystem();
         SeatingAssignmentSystem seatingAssignmentSystem = new SeatingAssignmentSystem();
         seatingAssignmentSystem.arrangeStudents(floorPlanSystem, students, 4);
@@ -36,7 +43,11 @@ class Main {
 
     }
 
-    // test method (really bad code form)
+    /**
+    * generateRandomStudent
+    * Test method to generate random students
+    * @return Student - the randomly generated Student
+    */
     static public Student generateRandomStudent() {
         Random random = new Random();
 
@@ -46,10 +57,11 @@ class Main {
 
         final String[] groupNames = { "intro", "contest", "web" };
         String group = groupNames[random.nextInt(3)];
-
+        
+        //Generate random friends
         int numFriends = random.nextInt(2) + 2;
         int[] friends = new int[3];
-
+        
         for (int i = 0; i < 3; i++) {
             if (i < numFriends) {
                 friends[i] = 500 + random.nextInt(+numberOfStudentsToTest + 3);
@@ -58,6 +70,8 @@ class Main {
             }
 
         }
+        
+        //Return Student object
         return new Student(id + "/" + grade + "/" + group, id, grade, group, friends);
 
     }
