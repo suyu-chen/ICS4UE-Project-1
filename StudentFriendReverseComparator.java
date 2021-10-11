@@ -1,11 +1,12 @@
-import java.util.Comparator;
-
 /**
- * StudentFriendComparator.java A Comparator that compares students based on the
+ * StudentFriendComparator.java
  * number of friends
  * 
  * @author Suyu
  */
+
+import java.util.Comparator;
+
 public class StudentFriendReverseComparator implements Comparator<Student> {
 
     @Override
