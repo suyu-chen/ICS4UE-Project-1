@@ -13,8 +13,8 @@ import java.util.Random;
 */
 class Main {
 
-    static int studentNum = 500;
-    static int numberOfStudentsToTest = 500;
+    static int studentNum = 100;
+    static int numberOfStudentsToTest = 100;
     
     /**
     * main
