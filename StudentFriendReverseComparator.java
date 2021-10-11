@@ -1,11 +1,11 @@
-/**
- * StudentFriendComparator.java
- * number of friends
- * 
- * @author Suyu
+/* StudentFriendReverseComparator.java  
+ * @author Dhruv, Alex, Suyu
+ * @version October 11, 2021
+ * Compares students based on their friends
  */
 
 import java.util.Comparator;
+
 
 public class StudentFriendReverseComparator implements Comparator<Student> {
 
