@@ -1,6 +1,7 @@
-/* [Main.java]
- * This is our main method for testing.
- * @author Dhruv, Suyu, Alex
+/* Main.java  
+ * @author Dhruv, Alex, Suyu
+ * @version October 11, 2021
+ * Main program for testing.
  */
 
 import java.util.ArrayList;
