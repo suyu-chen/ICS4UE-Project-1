@@ -6,9 +6,13 @@
 
 import java.util.Comparator;
 
-
+/**
+* StudentFriendReverseComparator
+* This class compares students based on their friends
+*/
 public class StudentFriendReverseComparator implements Comparator<Student> {
-
+    
+    
     @Override
     public int compare(Student s1, Student s2) {
         int s1Friends = getNumFriends(s1);
