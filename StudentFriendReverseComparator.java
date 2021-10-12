@@ -39,7 +39,7 @@ public class StudentFriendReverseComparator implements Comparator<Student> {
     * @return numFriends (int) - the number of that student's friends
     */
     private int getNumFriends(Student s) {
-        int[] friends = s.getFriends();
+        int[] friends = s.getFriendPreferences();
         int numFriends = friends.length;
         for (int i = 0; i < friends.length; i++) {
             if (friends[i] == -1) {

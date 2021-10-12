@@ -44,7 +44,7 @@ class SeatingAssignmentSystem {
         // looping through each studentgroup
         for (ArrayList<Student> studentGroup : studentGroups) {
 
-            if (studentGroup.size() > 0) {
+            if (!studentGroup.isEmpty()) {
 
                 // find how many tables needed
                 int numTablesInStudentGroup = studentGroup.size() / TABLE_SIZE;
@@ -55,11 +55,11 @@ class SeatingAssignmentSystem {
                 // create tables for each studentgroup
                 Table[] tablesInStudentGroup = new Table[numTablesInStudentGroup];
                 for (int i = 0; i < numTablesInStudentGroup; i++) {
-                    String tableName = "";
-                    if (!studentGroup.isEmpty()) {
-                        tableName = studentGroup.get(0).getGroup() + ": " + studentGroup.get(0).getGrade();
-                    }
-                    tablesInStudentGroup[i] = new Table(1, TABLE_SIZE, tableName);
+                    // String tableName = "";
+                    // if (!studentGroup.isEmpty()) {
+                    //     tableName = studentGroup.get(0).getGroup() + ": " + studentGroup.get(0).getGrade();
+                    // }
+                    tablesInStudentGroup[i] = new Table(1, TABLE_SIZE);
                 }
 
                 // sort students from most to least friends
@@ -68,7 +68,7 @@ class SeatingAssignmentSystem {
                 tablesInStudentGroup = assignTablesInStudentGroup(studentGroup, tablesInStudentGroup);
 
                 for (int i = 0; i < tablesInStudentGroup.length; i++) {
-                    floorPlanSystem.addTable(tablesInStudentGroup[i]);
+                    floorPlanSystem.addTable(tablesInStudentGroup[i], studentGroup.get(0).getGroup());
                 }
             }
         }
@@ -90,9 +90,9 @@ class SeatingAssignmentSystem {
 
             // look for friends
             for (Table table : tablesInStudentGroup) {
-                if (table.getRemainingCapacity() != 0) {
-                    for (int k = 0; k < table.getCapacity() - table.getRemainingCapacity(); k++) {
-                        if (isFriends(currentStudent, table.getStudentList()[k]) && !foundTable) {
+                if (table.seatsRemaining() != 0) {
+                    for (int k = 0; k < table.getCapacity() - table.seatsRemaining(); k++) {
+                        if (isFriends(currentStudent, table.getStudents()[k]) && !foundTable) {
                             table.addStudent(currentStudent);
                             foundTable = true;
                         }
@@ -105,7 +105,7 @@ class SeatingAssignmentSystem {
                 int mostCapacity = 0;
                 int tableIndex = 0;
                 for (int j = 0; j < tablesInStudentGroup.length; j++) {
-                    if (tablesInStudentGroup[j].getRemainingCapacity() > mostCapacity) {
+                    if (tablesInStudentGroup[j].seatsRemaining() > mostCapacity) {
                         tableIndex = j;
                     }
                 }
@@ -154,8 +154,8 @@ class SeatingAssignmentSystem {
      * @return whether or not 'friend' is in the friend list of 'student'
      */
     private boolean isFriendOf(Student student, Student friend) {
-        for (int i = 0; i < student.getFriends().length; i++) {
-            if (friend.getId() == student.getFriends()[i]) {
+        for (int i = 0; i < student.getFriendPreferences().length; i++) {
+            if (friend.getId() == student.getFriendPreferences()[i]) {
                 return true;
             }
         }
