@@ -10,24 +10,22 @@ import java.util.ArrayList;
 /**
 * SeatingAssignmentSystem
 * This class is made to assign students to tables
-* @param floorPlanSystem (FloorPlanSystem)
-* @param students (ArrayList<Student>) - the arraylist of students
-* @param tableSize (int) - the table size for assigning students to
 */
 class SeatingAssignmentSystem {
 
     final String[] groupNames = { "intro", "contest", "web" };
     final int NUM_GRADES = 4;
     final int LOWEST_GRADE = 9;
+    final int TABLE_SIZE = 4;
     
     /**
-     * arrangeStudents
+     * arrangeStudents 
      * Assign tables to students based on capacity and group
-     * @param student the student whose friend list to check
-     * @param friend  the student to check
+     * @param floorPlanSystem (FloorPlanSystem)
+     * @param students        (ArrayList<Student>) - the arraylist of students
      * @return whether or not 'friend' is in the friend list of 'student'
      */
-    public void arrangeStudents(FloorPlanSystem floorPlanSystem, ArrayList<Student> students, int tableSize) {
+    public void arrangeStudents(FloorPlanSystem floorPlanSystem, ArrayList<Student> students) {
 
         // arraylist of group-grade pairs (0-3 is intro, 4-7 is contest, 8-11 is web)
         ArrayList<ArrayList<Student>> studentGroups = new ArrayList<ArrayList<Student>>(NUM_GRADES * groupNames.length);
@@ -49,8 +47,8 @@ class SeatingAssignmentSystem {
             if (studentGroup.size() > 0) {
 
                 // find how many tables needed
-                int numTablesInStudentGroup = studentGroup.size() / tableSize;
-                if (studentGroup.size() % tableSize != 0) {
+                int numTablesInStudentGroup = studentGroup.size() / TABLE_SIZE;
+                if (studentGroup.size() % TABLE_SIZE != 0) {
                     numTablesInStudentGroup++;
                 }
 
@@ -61,7 +59,7 @@ class SeatingAssignmentSystem {
                     if (!studentGroup.isEmpty()) {
                         tableName = studentGroup.get(0).getGroup() + ": " + studentGroup.get(0).getGrade();
                     }
-                    tablesInStudentGroup[i] = new Table(tableSize, tableName);
+                    tablesInStudentGroup[i] = new Table(1, TABLE_SIZE, tableName);
                 }
 
                 // sort students from most to least friends

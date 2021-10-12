@@ -18,6 +18,7 @@ class Table {
     private int capacity;
     private int remainingCapacity;
     private Student[] studentList;
+    private int id;
     
     /**
     * Table constructor
@@ -25,7 +26,8 @@ class Table {
     * @param capacity (int) - the table's capacity
     * @param tableName (String) - the name of the table
     */
-    public Table(int capacity, String tableName) {
+    public Table(int id, int capacity, String tableName) {
+        this.id = id;
         this.capacity = capacity;
         this.remainingCapacity = capacity;
         
@@ -52,6 +54,10 @@ class Table {
             }
         }
         return false;
+    }
+
+    public int getID(){
+        return id;
     }
     
     /**
@@ -206,17 +212,22 @@ class Student {
 * This class is for the floorPlanSystem, representing the Tables and students graphically
 */
 class FloorPlanSystem {
-    
+        
+    //New ArrayList for the tables
+    ArrayList<Table> tables = new ArrayList<Table>();
+    int capacity = 4;
+
     /**
     * FloorPlanSystem constructor
     * Constructor method for the FloorPlanSystem class.
     */
     public FloorPlanSystem() {
     }
-    
-    //New ArrayList for the tables
-    ArrayList<Table> tables = new ArrayList<Table>();
        
+    public int getCapacity(){
+        return capacity;
+    }
+    
     /**
     * String getTables - Getter method
     * @return tables (ArrayList<Table>) - ArrayList for tables

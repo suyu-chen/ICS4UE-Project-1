@@ -37,7 +37,7 @@ class Main {
 
         FloorPlanSystem floorPlanSystem = new FloorPlanSystem();
         SeatingAssignmentSystem seatingAssignmentSystem = new SeatingAssignmentSystem();
-        seatingAssignmentSystem.arrangeStudents(floorPlanSystem, students, 4);
+        seatingAssignmentSystem.arrangeStudents(floorPlanSystem, students);
 
         floorPlanSystem.printFloorPlan();
 
