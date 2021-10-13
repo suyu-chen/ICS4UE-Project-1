@@ -9,19 +9,17 @@ public class Student{
     private String name;
     private int id;
     private int grade;
-    private int[] friendPreferences;
-    private String group;
+    int[] friendPreferences;
+    String group;
 
   
 
     public Student(String name, int id, int grade, int[] friendPreferences, String group){
-
         this.name = name;
         this.id = id;
         this.grade = grade;
         this.friendPreferences = friendPreferences;
         this.group = group;
-
     }
 
     
