@@ -126,7 +126,7 @@ public class FloorPlanSystem {
      */
     public boolean removeTable(int id) {
         for (int i = 0; i < numTables; i++) {
-            if (tableList.get(i).getID() == id) {
+            if (tableList.get(i).getId() == id) {
                 tableList.remove(i);
                 numTables--;  
                 return true;
@@ -259,7 +259,7 @@ public class FloorPlanSystem {
                 g.fillRect(EXIT_BUTTON_X, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
                 g.setColor(Color.black);
                 g.drawRect(EXIT_BUTTON_X, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
-                g.drawString("EXIT", EXIT_BUTTON_X + 25, EXIT_BUTTON_Y + 25);
+                g.drawString("Back", EXIT_BUTTON_X + 25, EXIT_BUTTON_Y + 25);
 
             }
         }

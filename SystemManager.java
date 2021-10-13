@@ -18,12 +18,12 @@ import java.awt.Image;
 **/
 
 public class SystemManager extends JFrame {
-    private static EnrollmentSystemPanel enrollSys = new EnrollmentSystemPanel();
-    private FloorPlanSystem floorPlan = new FloorPlanSystem();
+    public static EnrollmentSystemPanel enrollSys = new EnrollmentSystemPanel();
+    public static FloorPlanSystem floorPlan = new FloorPlanSystem(new String[]{"intro", "contest", "web"});
     private Image csLogo;
     JFrame thisFrame;
    
-    //private SeatingAssignmentSystem seatingPlan  = new SeatingAssignmentSystem();
+    public static SeatingAssignmentSystem seatingPlan  = new SeatingAssignmentSystem();
 
     public SystemManager() {
         super("Seating Assignment Manager");
@@ -42,7 +42,6 @@ public class SystemManager extends JFrame {
         enrollButton.setBackground(new Color(255, 255, 255));
         enrollButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                thisFrame.dispose();
                 enrollSys.generateJTable();
             }
         });
@@ -53,15 +52,8 @@ public class SystemManager extends JFrame {
         instButton.setBackground(new Color(255, 255, 255));
         instButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                seatingPlan.arrangeStudents(floorPlan, enrollSys.getStudentList());
-                thisFrame.dispose();
-                JFrame floorFrame = new JFrame();
-                JPanel floorPanel = new FloorPanel();
-                floorFrame.setVisible(true);
-                floorFrame.setSize(900, 500);
-                floorFrame.setLocationRelativeTo(null); // start the frame in the center of the screen
-                floorFrame.setResizable(true);
-                floorFrame.add(floorPanel);
+                // thisFrame.dispose();
+                floorPlan.displayTables();
             }
         });
 
@@ -110,7 +102,6 @@ public class SystemManager extends JFrame {
 
             super.paintComponent(g); // required
             setDoubleBuffered(true);
-            floorPlan.displayTables(g);
 
         }
 

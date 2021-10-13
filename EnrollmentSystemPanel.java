@@ -55,14 +55,18 @@ public class EnrollmentSystemPanel {
           pane = new JScrollPane(table);           
           pane.setBounds(0, 0, 900, 200);
 
-        generateJTable();
+          // TODO remove after testing
+        for (int i = 0; i < 100; i++) {
+            addStudent(Test.generateRandomStudent(), (int[]) Test.generateRandomStudent()[5]);
+
+        }
     }
 
     public void generateJTable() {
         // create JFrame and JTable
         JFrame frame = new JFrame();
 
-        String[] groups = {"Game Development", "Web Development", "Competitive Programming"};
+        String[] groups = {"Intro", "Contest", "Web"};
         
 
         // create JTextFields to hold the value
@@ -339,7 +343,7 @@ public class EnrollmentSystemPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new SystemManager();
+                SystemManager.seatingPlan.arrangeStudents(SystemManager.floorPlan, SystemManager.enrollSys.getStudentList());
             }
         });
         frame.setSize(900, 500);

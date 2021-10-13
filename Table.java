@@ -64,7 +64,7 @@ public class Table {
      */
     public boolean removeStudent(int id) {
         for (int i = 0; i < this.numStudents; i++) {
-            if (students[i].getID() == id) {
+            if (students[i].getId() == id) {
                 students[i] = null;
             }
             // Shift students downwards in the array once a student has been removed
@@ -126,7 +126,7 @@ public class Table {
      * Returns the id of the table
      * @return the id of the table
      */
-    public int getID() {
+    public int getId() {
         return this.id;
     }
 
@@ -223,7 +223,7 @@ public class Table {
         int nameGap = 23;
         g.setColor(this.color);
         g.fillRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT);
-        g.setColor(color.black);
+        g.setColor(Color.black);
         g.drawRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT);
         for (int i = 0; i < this.numStudents; i++){
             g.setColor(new Color(30, 30, 30));
@@ -269,7 +269,7 @@ public class Table {
 
         g.setColor(new Color(255, 255, 255, 130));
         g.fillRect(xShift, yShift, informationWidth, informationHeight);
-        g.setColor(color.black);
+        g.setColor(Color.black);
         g.drawRect(xShift, yShift, informationWidth, informationHeight);
 
         String header = String.format("TABLE: %d | GROUP: %s", this.id, this.group);
@@ -278,7 +278,7 @@ public class Table {
 
         for (int i = 0; i < this.numStudents; i++) {
 
-            String studentInformation = String.format("%d. ID: %d   |   NAME: %s", i+1, students[i].getID(), students[i].getName());
+            String studentInformation = String.format("%d. ID: %d   |   NAME: %s", i+1, students[i].getId(), students[i].getName());
 
             g.drawString(studentInformation, xShift + 15, yShift + 23 * (i+2));
         }
