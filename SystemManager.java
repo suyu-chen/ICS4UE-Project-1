@@ -12,8 +12,8 @@ import java.awt.Image;
 
 /**
  * [SystemManager.java]
- * 
- * @author 
+ * Manages the seating assignment, student enrollment and floor plan system
+ * @author Alex, Nicholas, Samson
  * @version 1.0 
 **/
 
@@ -42,6 +42,7 @@ public class SystemManager extends JFrame {
         enrollButton.setBackground(new Color(255, 255, 255));
         enrollButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
+                thisFrame.dispose();
                 enrollSys.generateJTable();
             }
         });
@@ -52,12 +53,13 @@ public class SystemManager extends JFrame {
         instButton.setBackground(new Color(255, 255, 255));
         instButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                // thisFrame.dispose();
+                thisFrame.dispose();
+                floorPlan = new FloorPlanSystem(new String[]{"intro", "contest", "web"});
+                seatingPlan =  new SeatingAssignmentSystem();
+                seatingPlan.arrangeStudents(floorPlan, enrollSys.getStudentList());
                 floorPlan.displayTables();
             }
         });
-
-
 
         //Create a JButton for the centerPanel
         JButton exitButton = new JButton("Exit");
@@ -80,6 +82,11 @@ public class SystemManager extends JFrame {
         this.requestFocusInWindow();
     }
 
+    
+    /**drawLogo 
+     * draws the RHHS Computer Science Logo
+     * @param g the graphics panel
+     */
     public void drawLogo(Graphics g) {
         try {
             csLogo = ImageIO.read(new File("cslogo.png")).getScaledInstance(300, 200, Image.SCALE_DEFAULT);
@@ -88,23 +95,20 @@ public class SystemManager extends JFrame {
         }
         g.drawImage(csLogo, 300, 100, null);
     }
-    class MainPanel extends JPanel {
 
+    class MainPanel extends JPanel {
         public void paintComponent(Graphics g) {
-            super.paintComponent(g); //required
+            super.paintComponent(g); 
             setDoubleBuffered(true);
             drawLogo(g);
         }
     }
+
     class FloorPanel extends JPanel {
-
         public void paintComponent(Graphics g) {
-
-            super.paintComponent(g); // required
+            super.paintComponent(g); 
             setDoubleBuffered(true);
-
         }
-
     }
     public static void main(String[] args) {
         new SystemManager();

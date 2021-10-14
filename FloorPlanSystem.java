@@ -140,6 +140,7 @@ public class FloorPlanSystem {
      * @return the arraylist containing the list of tables
      */
     public ArrayList<Table> getTableList() {
+    
         return this.tableList;
     }
 
@@ -268,7 +269,8 @@ public class FloorPlanSystem {
         private class KeyEventListener implements KeyListener {
             public void keyPressed (KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    FloorPlanFrame.this.dispose();
+                    FloorPlanFrame.this.dispose()
+                    ;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT){
                     offsetX -= GRID_SQUARE_SIZE;
                 } else if (e.getKeyCode() == KeyEvent.VK_LEFT){
@@ -294,7 +296,9 @@ public class FloorPlanSystem {
                 // Dispose the frame if exit button is pressed
                 if ( (mouseX >= EXIT_BUTTON_X) && (mouseX <= EXIT_BUTTON_X + EXIT_BUTTON_WIDTH) ) {
                     if ( (mouseY >= EXIT_BUTTON_Y) && (mouseY <= EXIT_BUTTON_Y + EXIT_BUTTON_HEIGHT) ) {
+                        new SystemManager();
                         FloorPlanFrame.this.dispose();
+                      
                     }
                 }
 
