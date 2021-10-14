@@ -109,6 +109,7 @@ class SeatingAssignmentSystem {
                     }
                 }
                 tablesInStudentGroup[tableIndex].addStudent(currentStudent);
+        
             }
 
         }
