@@ -3,12 +3,14 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 /**
+ * [Table.java]
  * This class represents a table that contains a set amount of Student
  * objects. This table can be drawn onto a java.awt.Graphics object.
  * 
  * @author Edison Du
  * @author Peter Gu
  * @author Jeffrey Xu
+ * @version 1.0 Oct 13, 2021
  */
 public class Table {
 
@@ -21,14 +23,14 @@ public class Table {
      */
     public static final int HEIGHT = 90;
     
-    /* Variables */
+    /* Student logic Variables */
     private int id;
     private int capacity;
     private int numStudents;
     private String group;
     private Student[] students;
 
-    /* Graphics related */
+    /* Graphics related variables */
     private int x, y;
     private Color color;
     
@@ -45,6 +47,7 @@ public class Table {
     }
 
     /**
+     * addStudent
      * This method is used to add a student into the table's array of students
      * @param student the student to be added
      * @return whether or not the student has been succesfully added
@@ -58,13 +61,14 @@ public class Table {
     }
 
     /**
+     * removeStudent
      * This method is used to remove a student from the table's array of students
      * @param id the id of the student of be removed
      * @return whether or not the student has been succesfully removed
      */
     public boolean removeStudent(int id) {
         for (int i = 0; i < this.numStudents; i++) {
-            if (students[i].getId() == id) {
+            if (students[i].getID() == id) {
                 students[i] = null;
             }
             // Shift students downwards in the array once a student has been removed
@@ -82,6 +86,7 @@ public class Table {
     }
 
     /**
+     * getStudents
      * Returns an array containing the students in the table
      * @return the array containing the students in the table
      */
@@ -90,6 +95,7 @@ public class Table {
     }
 
     /**
+     * isEmpty
      * Checks whether or not the table contains any students
      * @return whether or not the table contains any students
      */
@@ -98,6 +104,7 @@ public class Table {
     }
     
     /**
+     * seatsRemaining
      * Returns the number of seats remaining in the table
      * @return the number of seats remain
      */
@@ -107,6 +114,7 @@ public class Table {
 
     
     /**
+     * getNumStudents
      * Returns the number of students at the table
      * @return the number of students at the table
      */
@@ -115,6 +123,7 @@ public class Table {
     }
 
     /**
+     * getCapacity
      * Returns the limit of students that the table can contain
      * @return the limit of students that the table can contain
      */
@@ -123,14 +132,16 @@ public class Table {
     }
     
     /**
+     * getID
      * Returns the id of the table
      * @return the id of the table
      */
-    public int getId() {
+    public int getID() {
         return this.id;
     }
 
     /**
+     * setID
      * Modifies the id of the table
      * @param id the id of the table to change to
      */
@@ -139,6 +150,7 @@ public class Table {
     }
 
     /**
+     * getGroup
      * Returns the group of the table
      * @return the group of the table
      */
@@ -147,6 +159,7 @@ public class Table {
     }
 
     /**
+     * setGroup
      * Changes the group associated with the table
      * @param group the name of the group to change to
      */
@@ -155,6 +168,7 @@ public class Table {
     }
 
     /**
+     * getX
      * Returns the x position of the table
      * @return the x position of the table
      */
@@ -163,6 +177,7 @@ public class Table {
     }
 
     /**
+     * setX
      * Changes the x position of the table
      * @param x the x position to change to
      */
@@ -171,6 +186,7 @@ public class Table {
     }
 
     /**
+     * getY
      * Returns the y position of the table
      * @return the y position of the table
      */
@@ -178,6 +194,7 @@ public class Table {
         return this.y;
     }
     /**
+     * setY
      * Changes the y position of the table
      * @param y theS y position to change to
      */
@@ -186,6 +203,7 @@ public class Table {
     }
 
     /**
+     * getColor
      * Returns a color object representing color of the table
      * @return the color object representing color of the table
      */
@@ -194,6 +212,7 @@ public class Table {
     }
 
     /**
+     * setColor
      * Changes the color of the table
      * @param color the color object to change to
      */
@@ -202,6 +221,7 @@ public class Table {
     }
     
     /**
+     * checkOverlap
      * This method checks if a point overlaps with a table
      * @param x the x value of the point
      * @param y the y value of the point
@@ -211,10 +231,9 @@ public class Table {
         return ( (this.x <= x) && (x <= this.x + WIDTH) && (this.y <= y) && (y <= this.y + HEIGHT) );
     }
 
-    /***** Graphics *****/
-
     /**
-     * Display/draw the table onto a Graphics object
+     * draw
+     * Display the table onto a Graphics object
      * @param g the graphics object for drawing
      * @param xShift the horizontal offset of the tables when drawn
      * @param yShift the vertical offset of the tables when drawn
@@ -222,9 +241,10 @@ public class Table {
     public void draw(Graphics g, int xShift, int yShift) {
         int nameGap = 23;
         g.setColor(this.color);
-        g.fillRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT);
-        g.setColor(Color.black);
-        g.drawRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT);
+        g.fillRoundRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT, 15, 15);
+        g.setColor(Color.BLACK);
+        g.drawRoundRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT, 15, 15);
+
         for (int i = 0; i < this.numStudents; i++){
             g.setColor(new Color(30, 30, 30));
             g.drawString(students[i].getName(), this.x + xShift + 5, this.y + yShift + i * nameGap + 15);
@@ -232,7 +252,8 @@ public class Table {
     }
 
     /**
-     * Display/draw the table onto a Graphics object with transparency
+     * drawTransparent
+     * Display the table onto a Graphics object with transparency
      * @param g the graphics object for drawing
      * @param xShift the horizontal offset of the tables when drawn
      * @param yShift the vertical offset of the tables when drawn
@@ -247,9 +268,10 @@ public class Table {
         int opacity = 125;
         
         g.setColor(new Color(red, green, blue, opacity));
-        g.fillRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT);
+        g.fillRoundRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT, 15, 15);
         g.setColor(new Color(0, 0, 0, 125));
-        g.drawRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT);
+        g.drawRoundRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT, 15, 15);
+
         for (int i = 0; i < this.numStudents; i++){
             g.setColor(new Color(30, 30, 30, 125));
             g.drawString(students[i].getName(), this.x + xShift + 5, this.y + yShift + i * nameGap + 15);
@@ -257,30 +279,48 @@ public class Table {
     }
 
     /**
-     * Display the info of the table clicked/selected by the user
+     * drawOutline
+     * Display an outline of the table onto a Graphics object
+     * @param g the graphics object for drawing
+     * @param xShift the horizontal offset of the tables when drawn
+     * @param yShift the vertical offset of the tables when drawn
+     */
+    public void drawOutline(Graphics g, int xShift, int yShift, Color color) {
+        g.setColor(color);
+        g.drawRoundRect(this.x + xShift, this.y + yShift, WIDTH, HEIGHT, 15, 15);
+    }
+
+    /**
+     * drawInformation
+     * Display the information of the table and the students in the table
      * @param g the graphics object for drawing
      * @param xShift the horizontal offset of the tables when drawn
      * @param yShift the vertical offset of the tables when drawn
      */
     public void drawInformation(Graphics g, int xShift, int yShift) {
+
         int nameGap = 23;
         int informationWidth = 400;
         int informationHeight = 150;
 
-        g.setColor(new Color(255, 255, 255, 130));
-        g.fillRect(xShift, yShift, informationWidth, informationHeight);
-        g.setColor(Color.black);
-        g.drawRect(xShift, yShift, informationWidth, informationHeight);
+        g.setColor(new Color(255, 255, 255, 200));
 
-        String header = String.format("TABLE: %d | GROUP: %s", this.id, this.group);
+        g.fillRoundRect(xShift, yShift, informationWidth, informationHeight, 15, 15);
+        g.setColor(Color.BLACK);
+        g.drawRoundRect(xShift, yShift, informationWidth, informationHeight, 15, 15);
 
-        g.drawString(header, xShift + 15, yShift  + nameGap);
+        g.drawString("TABLE " + this.id, xShift + 15, yShift  + nameGap);
+        g.drawString("GROUP: " + this.group, xShift + 190, yShift  + nameGap);
 
         for (int i = 0; i < this.numStudents; i++) {
 
-            String studentInformation = String.format("%d. ID: %d   |   NAME: %s", i+1, students[i].getId(), students[i].getName());
+            String studentID = String.format("%d. ID: %-9d", i+1, students[i].getID());
+            String studentGrade = String.format("GR: %-2d", students[i].getGrade());
+            String studentName = String.format("Name: %-10s", students[i].getName());
 
-            g.drawString(studentInformation, xShift + 15, yShift + 23 * (i+2));
+            g.drawString(studentID, xShift + 15, yShift + 23 * (i+2));
+            g.drawString(studentGrade, xShift + 130, yShift + 23 * (i+2));
+            g.drawString(studentName, xShift + 190, yShift + 23 * (i+2));
         }
     }
 }
