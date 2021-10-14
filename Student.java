@@ -12,8 +12,6 @@ public class Student{
     int[] friendPreferences;
     String group;
 
-  
-
     public Student(String name, int id, int grade, int[] friendPreferences, String group){
         this.name = name;
         this.id = id;
